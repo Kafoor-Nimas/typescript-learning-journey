@@ -6,6 +6,7 @@ const menu = [
 ];
 
 const cashInRegister = 100;
+const nextOrderId = 1;
 const orderQueue = [];
 
 function addNewPizza(pizzaObj) {
@@ -16,7 +17,28 @@ function placeOrder(pizzaName) {
   const selectedPizza = menu.find((item) => item.name === pizzaName);
 
   cashInRegister += selectedPizza.price;
-  const newOrder = { pizza: selectedPizza, status: "ordered" };
+  const newOrder = {
+    id: nextOrderId++,
+    pizza: selectedPizza,
+    status: "ordered",
+  };
   orderQueue.push(newOrder);
   return newOrder;
 }
+
+function completeOrder(orderId) {
+  const order = orderQueue.find((order) => order.id === orderId);
+  order.status = "completed";
+  return order;
+}
+
+addNewPizza({ name: "BBQ Chicken", price: 12 });
+addNewPizza({ name: "Chicken bacon ranch", price: 12 });
+addNewPizza({ name: "Spicy sausage", price: 11 });
+
+placeOrder("Chicken bacon ranch");
+completeOrder("1");
+
+console.log("Menu:", menu);
+console.log("Cash in Register:", cashInRegister);
+console.log("Order Queue:", orderQueue);
