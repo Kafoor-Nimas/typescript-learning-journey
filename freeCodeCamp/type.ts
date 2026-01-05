@@ -8,18 +8,13 @@ type Person = {
   name: string;
   age: number;
   isStudent: boolean;
-  address: Address;
+  address?: Address;
 };
 
 let person1: Person = {
   name: "Joe",
   age: 42,
   isStudent: true,
-  address: {
-    street: "123 Main",
-    city: "Town",
-    country: "India",
-  },
 };
 
 let person2: Person = {
@@ -32,3 +27,9 @@ let person2: Person = {
     country: "India",
   },
 };
+
+function displayInfo(person) {
+  console.log(`${person.name} lives at ${person.address?.street}`);
+}
+
+displayInfo(person1);
