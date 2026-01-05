@@ -1,47 +1,20 @@
-const menu = [
-  { name: "Margherita", price: 8 },
-  { name: "Pepperoni", price: 10 },
-  { name: "Hawaiian", price: 10 },
-  { name: "Vegetarian", price: 9 },
-];
+type Person = {
+  name: string;
+  age: number;
+  isStudent: boolean;
+};
 
-let cashInRegister = 100;
-let nextOrderId = 1;
-const orderQueue = [];
+let person1: Person = {
+  name: "joe",
+  age: 42,
+  isStudent: true,
+};
+let person2: Person = {
+  name: "jill",
+  age: 64,
+  isStudent: false,
+};
 
-function addNewPizza(pizzaObj) {
-  menu.push(pizzaObj);
-}
+type Food = string;
 
-function placeOrder(pizzaName:string) {
-  const selectedPizza = menu.find((item) => item.name === pizzaName);
-  if (!selectedPizza) {
-    console.error(`${pizzaName} is not available on the menu.`);
-    return;
-  }
-  cashInRegister += selectedPizza.price;
-  const newOrder = {
-    id: nextOrderId++,
-    pizza: selectedPizza,
-    status: "ordered",
-  };
-  orderQueue.push(newOrder);
-  return newOrder;
-}
-
-function completeOrder(orderId: number) {
-  const order = orderQueue.find((order) => order.id === orderId);
-  order.status = "completed";
-  return order;
-}
-
-addNewPizza({ name: "BBQ Chicken", price: 12 });
-addNewPizza({ name: "Chicken bacon ranch", price: 12 });
-addNewPizza({ name: "Spicy sausage", price: 11 });
-
-placeOrder("Chicken bacon ranch");
-completeOrder(1);
-
-console.log("Menu:", menu);
-console.log("Cash in Register:", cashInRegister);
-console.log("Order Queue:", orderQueue);
+let favoriteFood: Food = "pizza";
