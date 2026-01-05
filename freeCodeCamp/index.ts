@@ -5,8 +5,8 @@ const menu = [
   { name: "Vegetarian", price: 9 },
 ];
 
-const cashInRegister = 100;
-const nextOrderId = 1;
+let cashInRegister = 100;
+let nextOrderId = 1;
 const orderQueue = [];
 
 function addNewPizza(pizzaObj) {
@@ -15,7 +15,10 @@ function addNewPizza(pizzaObj) {
 
 function placeOrder(pizzaName) {
   const selectedPizza = menu.find((item) => item.name === pizzaName);
-
+  if (!selectedPizza) {
+    console.error(`${pizzaName} is not available on the menu.`);
+    return;
+  }
   cashInRegister += selectedPizza.price;
   const newOrder = {
     id: nextOrderId++,
