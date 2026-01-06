@@ -21,11 +21,11 @@ let cashInRegister = 100;
 let nextOrderId = 1;
 const orderQueue: Order[] = [];
 
-function addNewPizza(pizzaObj: Pizza) {
+function addNewPizza(pizzaObj: Pizza): void {
   menu.push(pizzaObj);
 }
 
-function placeOrder(pizzaName: string) {
+function placeOrder(pizzaName: string): Order | undefined {
   const selectedPizza = menu.find((item) => item.name === pizzaName);
   if (!selectedPizza) {
     console.error(`${pizzaName} is not available on the menu.`);
@@ -41,7 +41,7 @@ function placeOrder(pizzaName: string) {
   return newOrder;
 }
 
-function completeOrder(orderId: number) {
+function completeOrder(orderId: number): Order {
   const order = orderQueue.find((order) => order.id === orderId);
   if (!order) {
     console.error(`${orderId} was not found in the orderQueue`);
