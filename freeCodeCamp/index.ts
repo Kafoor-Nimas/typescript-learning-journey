@@ -24,6 +24,7 @@ const menu: Pizza[] = [
 const orderQueue: Order[] = [];
 
 function addNewPizza(pizzaObj: Pizza): void {
+  pizzaObj.id = nextPizzaId++;
   menu.push(pizzaObj);
 }
 
@@ -67,9 +68,9 @@ export function getPizzaDetail(identifier: string | number): Pizza | undefined {
   }
 }
 
-addNewPizza({ id: nextPizzaId++, name: "BBQ Chicken", price: 12 });
-addNewPizza({ id: nextPizzaId++, name: "Chicken bacon ranch", price: 12 });
-addNewPizza({ id: nextPizzaId++, name: "Spicy sausage", price: 11 });
+addNewPizza({ name: "BBQ Chicken", price: 12 });
+addNewPizza({ name: "Chicken bacon ranch", price: 12 });
+addNewPizza({ name: "Spicy sausage", price: 11 });
 
 placeOrder("Chicken bacon ranch");
 completeOrder(1);
