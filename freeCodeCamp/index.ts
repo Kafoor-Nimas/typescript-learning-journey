@@ -1,3 +1,7 @@
+let cashInRegister = 100;
+let nextOrderId = 1;
+let nextPizzaId = 1;
+
 type Pizza = {
   id: number;
   name: string;
@@ -11,14 +15,12 @@ type Order = {
 };
 
 const menu: Pizza[] = [
-  { id: 1, name: "Margherita", price: 8 },
-  { id: 2, name: "Pepperoni", price: 10 },
-  { id: 3, name: "Hawaiian", price: 10 },
-  { id: 4, name: "Vegetarian", price: 9 },
+  { id: nextPizzaId++, name: "Margherita", price: 8 },
+  { id: nextPizzaId++, name: "Pepperoni", price: 10 },
+  { id: nextPizzaId++, name: "Hawaiian", price: 10 },
+  { id: nextPizzaId++, name: "Vegetarian", price: 9 },
 ];
 
-let cashInRegister = 100;
-let nextOrderId = 1;
 const orderQueue: Order[] = [];
 
 function addNewPizza(pizzaObj: Pizza): void {
@@ -65,13 +67,13 @@ export function getPizzaDetail(identifier: string | number): Pizza | undefined {
   }
 }
 
-addNewPizza({ id: 5, name: "BBQ Chicken", price: 12 });
-addNewPizza({ id: 6, name: "Chicken bacon ranch", price: 12 });
-addNewPizza({ id: 7, name: "Spicy sausage", price: 11 });
+addNewPizza({ id: nextPizzaId++, name: "BBQ Chicken", price: 12 });
+addNewPizza({ id: nextPizzaId++, name: "Chicken bacon ranch", price: 12 });
+addNewPizza({ id: nextPizzaId++, name: "Spicy sausage", price: 11 });
 
 placeOrder("Chicken bacon ranch");
 completeOrder(1);
 
 console.log("Menu:", menu);
-console.log("Cash in Register:", cashInRegister);
-console.log("Order Queue:", orderQueue);
+// console.log("Cash in Register:", cashInRegister);
+// console.log("Order Queue:", orderQueue);
