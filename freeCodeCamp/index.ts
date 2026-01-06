@@ -1,4 +1,5 @@
 type Pizza = {
+  id: number;
   name: string;
   price: number;
 };
@@ -9,11 +10,11 @@ type Order = {
   status: "ordered" | "completed";
 };
 
-const menu = [
-  { name: "Margherita", price: 8 },
-  { name: "Pepperoni", price: 10 },
-  { name: "Hawaiian", price: 10 },
-  { name: "Vegetarian", price: 9 },
+const menu: Pizza[] = [
+  { id: 1, name: "Margherita", price: 8 },
+  { id: 2, name: "Pepperoni", price: 10 },
+  { id: 3, name: "Hawaiian", price: 10 },
+  { id: 4, name: "Vegetarian", price: 9 },
 ];
 
 let cashInRegister = 100;
@@ -50,9 +51,9 @@ function completeOrder(orderId: number) {
   return order;
 }
 
-addNewPizza({ name: "BBQ Chicken", price: 12 });
-addNewPizza({ name: "Chicken bacon ranch", price: 12 });
-addNewPizza({ name: "Spicy sausage", price: 11 });
+addNewPizza({ id: 5, name: "BBQ Chicken", price: 12 });
+addNewPizza({ id: 6, name: "Chicken bacon ranch", price: 12 });
+addNewPizza({ id: 7, name: "Spicy sausage", price: 11 });
 
 placeOrder("Chicken bacon ranch");
 completeOrder(1);
