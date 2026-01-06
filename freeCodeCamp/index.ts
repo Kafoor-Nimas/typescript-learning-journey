@@ -51,13 +51,17 @@ function completeOrder(orderId: number) {
   return order;
 }
 
-function getPizzaDetail(identifier: string | number) {
+export function getPizzaDetail(identifier: string | number) {
   if (typeof identifier === "string") {
     return menu.find(
       (pizza) => pizza.name.toLowerCase() === identifier.toLowerCase()
     );
-  } else {
+  } else if (typeof identifier === "number") {
     return menu.find((pizza) => pizza.id === identifier);
+  } else {
+    throw new TypeError(
+      "parameter `identifier` must be either a string or a number"
+    );
   }
 }
 
