@@ -53,8 +53,12 @@ console.log(menu);
 console.log(orderQueue);
 
 // example usage:
-addToArray(menu, { id: nextPizzaId++, name: "Chicken Bacon Ranch", price: 12 });
-addToArray(orderQueue, {
+addToArray<Pizza>(menu, {
+  id: nextPizzaId++,
+  name: "Chicken Bacon Ranch",
+  price: 12,
+});
+addToArray<Order>(orderQueue, {
   id: nextOrderId++,
   pizza: menu[2],
   status: "completed",
