@@ -7,11 +7,7 @@ type User = {
   role: "contributor" | "member" | "admin";
 };
 
-type UpdatedUser = {
-  id?: number;
-  username?: string;
-  role?: "contributor" | "member" | "admin";
-};
+type UpdatedUser = Partial<User>;
 
 type UserRole = "guest" | "member" | "admin";
 
