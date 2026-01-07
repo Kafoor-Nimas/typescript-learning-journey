@@ -12,6 +12,7 @@ const menu = [
 ];
 const orderQueue = [];
 function addNewPizza(pizzaObj) {
+    pizzaObj.id = nextPizzaId++;
     menu.push(pizzaObj);
 }
 function placeOrder(pizzaName) {
@@ -49,9 +50,9 @@ function getPizzaDetail(identifier) {
         throw new TypeError("parameter `identifier` must be either a string or a number");
     }
 }
-addNewPizza({ id: nextPizzaId++, name: "BBQ Chicken", price: 12 });
-addNewPizza({ id: nextPizzaId++, name: "Chicken bacon ranch", price: 12 });
-addNewPizza({ id: nextPizzaId++, name: "Spicy sausage", price: 11 });
+addNewPizza({ name: "BBQ Chicken", price: 12 });
+addNewPizza({ name: "Chicken bacon ranch", price: 12 });
+addNewPizza({ name: "Spicy sausage", price: 11 });
 placeOrder("Chicken bacon ranch");
 completeOrder(1);
 console.log("Menu:", menu);
