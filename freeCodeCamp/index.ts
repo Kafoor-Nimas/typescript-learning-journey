@@ -1,7 +1,3 @@
-let cashInRegister = 100;
-let nextOrderId = 1;
-let nextPizzaId = 1;
-
 type Pizza = {
   id: number;
   name: string;
@@ -14,49 +10,61 @@ type Order = {
   status: "ordered" | "completed";
 };
 
+let cashInRegister = 100;
+let nextOrderId = 1;
+let nextPizzaId = 1;
+
 const menu: Pizza[] = [
   { id: nextPizzaId++, name: "Margherita", price: 8 },
   { id: nextPizzaId++, name: "Pepperoni", price: 10 },
   { id: nextPizzaId++, name: "Hawaiian", price: 10 },
-  { id: nextPizzaId++, name: "Vegetarian", price: 9 },
+  { id: nextPizzaId++, name: "Veggie", price: 9 },
 ];
 
 const orderQueue: Order[] = [];
 
-function addNewPizza(pizzaObj: Omit<Pizza, "id">): Pizza {
-  const newPizza: Pizza = {
-    id: nextOrderId++,
-    ...pizzaObj,
-  };
-  menu.push(newPizza);
-  return newPizza;
+function addNewPizza(pizzaObj: Pizza): Pizza {
+  menu.push(pizzaObj);
+  return pizzaObj;
 }
 
-addNewPizza({ name: "BBQ Chicken", price: 12 });
-addNewPizza({ name: "Chicken bacon ranch", price: 12 });
-addNewPizza({ name: "Spicy sausage", price: 11 });
-
-function placeOrder(pizzaName: string): Order | undefined {
-  const selectedPizza = menu.find((item) => item.name === pizzaName);
-  if (!selectedPizza) {
-    console.error(`${pizzaName} is not available on the menu.`);
-    return;
-  }
-  cashInRegister += selectedPizza.price;
+function placeOrder(pizza: Pizza): Order | undefined {
   const newOrder: Order = {
     id: nextOrderId++,
-    pizza: selectedPizza,
+    pizza: pizza,
     status: "ordered",
   };
   orderQueue.push(newOrder);
+  cashInRegister += pizza.price;
   return newOrder;
 }
 
-function completeOrder(orderId: number): Order {
+/**
+ * Challenge: add types our generic `addToArray` function. It should work
+ * for adding new pizzas to the `menu` and adding new orders to the `orderQueue`
+ */
+
+function addToArray<T>(array: T[], item: T): T[] {
+  array.push(item);
+  return array;
+}
+
+console.log(menu);
+console.log(orderQueue);
+
+// example usage:
+addToArray(menu, { id: nextPizzaId++, name: "Chicken Bacon Ranch", price: 12 });
+addToArray(orderQueue, {
+  id: nextOrderId++,
+  pizza: menu[2],
+  status: "completed",
+});
+
+function completeOrder(orderId: number): Order | undefined {
   const order = orderQueue.find((order) => order.id === orderId);
   if (!order) {
     console.error(`${orderId} was not found in the orderQueue`);
-    throw new Error();
+    return;
   }
   order.status = "completed";
   return order;
@@ -71,14 +79,11 @@ export function getPizzaDetail(identifier: string | number): Pizza | undefined {
     return menu.find((pizza) => pizza.id === identifier);
   } else {
     throw new TypeError(
-      "parameter `identifier` must be either a string or a number"
+      "Parameter `identifier` must be either a string or a number"
     );
   }
 }
 
-placeOrder("Chicken bacon ranch");
-completeOrder(1);
-
-console.log("Menu:", menu);
-// console.log("Cash in Register:", cashInRegister);
-// console.log("Order Queue:", orderQueue);
+// addNewPizza({ id: nextPizzaId++, name: "Chicken Bacon Ranch", price: 12 })
+// addNewPizza({ id: nextPizzaId++, name: "BBQ Chicken", price: 12 })
+// addNewPizza({ id: nextPizzaId++, name: "Spicy Sausage", price: 11 })
