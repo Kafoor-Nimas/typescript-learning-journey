@@ -23,10 +23,18 @@ const menu: Pizza[] = [
 
 const orderQueue: Order[] = [];
 
-function addNewPizza(pizzaObj: Pizza): void {
-  pizzaObj.id = nextPizzaId++;
-  menu.push(pizzaObj);
+function addNewPizza(pizzaObj: Omit<Pizza, "id">): Pizza {
+  const newPizza: Pizza = {
+    id: nextOrderId++,
+    ...pizzaObj,
+  };
+  menu.push(newPizza);
+  return newPizza;
 }
+
+addNewPizza({ name: "BBQ Chicken", price: 12 });
+addNewPizza({ name: "Chicken bacon ranch", price: 12 });
+addNewPizza({ name: "Spicy sausage", price: 11 });
 
 function placeOrder(pizzaName: string): Order | undefined {
   const selectedPizza = menu.find((item) => item.name === pizzaName);
@@ -67,10 +75,6 @@ export function getPizzaDetail(identifier: string | number): Pizza | undefined {
     );
   }
 }
-
-addNewPizza({ name: "BBQ Chicken", price: 12 });
-addNewPizza({ name: "Chicken bacon ranch", price: 12 });
-addNewPizza({ name: "Spicy sausage", price: 11 });
 
 placeOrder("Chicken bacon ranch");
 completeOrder(1);
