@@ -1,11 +1,14 @@
-var arr: string[] = ["arr", "hj"];
-var ar2: string[][] = [["hello"], ["hii"], []];
+let direction: "east" | "west";
 
-var arr3 = [];
+direction = "west";
 
-//tupple
+let responseCode: 200 | 404 | 201;
+responseCode = 404;
 
-const coord: [number, string] = [1, "hello"];
-console.log(coord[0]);
-console.log(coord[1]);
- 
+enum Size {
+  Small,
+  Medium,
+  Large,
+}
+
+var size: Size = 0;
