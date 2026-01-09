@@ -1,4 +1,8 @@
-const arr = [{ name: "tim" }, { name: "Joe" }, { name: "Jane" }];
+function add(x: number, y: number): number | string {
+  if (x == 0) {
+    return "invalid";
+  }
+  return x + y;
+}
 
-const elemnt = arr.pop()!.name
-const elemnt2 = arr.pop()?.name
+const result = add(1, 2);
