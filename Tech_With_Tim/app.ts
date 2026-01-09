@@ -6,3 +6,10 @@ function add(x: number, y: number): number | string {
 }
 
 const result = add(1, 2);
+
+function makeName(firstName:string,lastName:string,middleName?:string){
+
+}
+
+
+const fullName = makeName("Kafoor","Nimas") 
