@@ -1,23 +1,20 @@
-interface Person {
-  name: string;
-  age: number;
-  height?: number;
-}
-interface Employee extends Person {
-  employeeId: number;
-}
-
-const worker: Employee = {
-  name: "David",
-  age: 23,
-  height: 175,
-  employeeId: 1692,
-};
-
-interface Manager extends Employee,Person {
-  employees:Person[]
+class Person {
+  private name: string;
+  constructor(name: string) {
+    this.name = name;
+  }
+  greet() {
+    console.log(`Hello, my name is ${this.name}`);
+  }
+  getName() {
+    if (this.name.length < 2) return "";
+    return this.name;
+  }
+  setName(name: string) {
+    if (name.length < 5) return;
+    this.name = name;
+  }
 }
 
-const manager:Manager ={
-  
-}
+const p1 = new Person("Tim");
+p1.getName();
