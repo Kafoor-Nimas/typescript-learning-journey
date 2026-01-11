@@ -1,19 +1,11 @@
-function mul(x: number, y: number): number {
-  return x * y;
-}
-function div(x: number, y: number): number {
-  return x / y;
-}
+function sum(...numbers: number[]) {}
 
-function applyFunc(funcs: ((a:number,b:number)=>number)[], values:[number,number][]): number[]{
-  const results = [] as number[];
-  for(let i=0;i<funcs.length;i++){
-    const args=values[i];
-    const result=funcs[i](args[0],args[1]);
-    results.push(result);
+sum(1, 2);
+sum();
+sum(1, 2, 4, 72, 12);
 
-  }
-  return results;
-}
+function sum2(str: string, ...numbers: number[]) {}
 
-applyFunc([mul,div],[[1,2],[4,5]]);
+sum2("hello", 1, 2);
+sum2("john");
+sum2("hello", 1, 2, 4, 72, 12);
