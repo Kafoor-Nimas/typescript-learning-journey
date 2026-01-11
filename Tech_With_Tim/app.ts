@@ -1,12 +1,17 @@
-function getItemLength(name: string): number;
-function getItemLength(names: string[]): string;
-function getItemLength(nameOrNames: unknown): unknown {
-  if (typeof nameOrNames === "string") {
-    return nameOrNames.length;
-  } else if (Array.isArray(nameOrNames)) {
-    return "Hello World!";
-  }
-  return 0;
+interface Person {
+  name: string;
+  age: number;
+  height?: number;
+  hello: () => void;
 }
 
-getItemLength(["", ""]);
+const person: Person = {
+  name: "tim",
+  age: 23,
+  hello: function () {
+    console.log(this.name + " says hi");
+  },
+};
+
+person.hello()
+person.height
