@@ -1,20 +1,22 @@
-class Person {
-  private name: string;
-  constructor(name: string) {
-    this.name = name;
-  }
-  greet() {
-    console.log(`Hello, my name is ${this.name}`);
-  }
-  getName() {
-    if (this.name.length < 2) return "";
-    return this.name;
-  }
-  setName(name: string) {
-    if (name.length < 5) return;
-    this.name = name;
+abstract class Animal {
+  abstract makeSound(duration: number): void;
+
+  move(duration: number) {
+    console.log("Moving along...");
+    this.makeSound(duration);
   }
 }
 
-const p1 = new Person("Tim");
-p1.getName();
+class Dog extends Animal {
+  makeSound(duration: number) {
+    console.log("Woof woof");
+  }
+}
+class Cat extends Animal {
+  makeSound(duration: number) {
+    console.log("Meow meow");
+  }
+}
+
+const dog = new Dog();
+dog.move(10);
