@@ -2,16 +2,22 @@ interface Person {
   name: string;
   age: number;
   height?: number;
-  hello: () => void;
+}
+interface Employee extends Person {
+  employeeId: number;
 }
 
-const person: Person = {
-  name: "tim",
+const worker: Employee = {
+  name: "David",
   age: 23,
-  hello: function () {
-    console.log(this.name + " says hi");
-  },
+  height: 175,
+  employeeId: 1692,
 };
 
-person.hello()
-person.height
+interface Manager extends Employee,Person {
+  employees:Person[]
+}
+
+const manager:Manager ={
+  
+}
