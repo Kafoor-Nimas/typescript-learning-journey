@@ -1,11 +1,12 @@
-function sum(...numbers: number[]) {}
+function getItemLength(name: string): number;
+function getItemLength(names: string[]): string;
+function getItemLength(nameOrNames: unknown): unknown {
+  if (typeof nameOrNames === "string") {
+    return nameOrNames.length;
+  } else if (Array.isArray(nameOrNames)) {
+    return "Hello World!";
+  }
+  return 0;
+}
 
-sum(1, 2);
-sum();
-sum(1, 2, 4, 72, 12);
-
-function sum2(str: string, ...numbers: number[]) {}
-
-sum2("hello", 1, 2);
-sum2("john");
-sum2("hello", 1, 2, 4, 72, 12);
+getItemLength(["", ""]);
